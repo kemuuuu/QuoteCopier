@@ -1,0 +1,27 @@
+<aura:component controller="CopyQuoteCrossOverOppsController">
+
+	<aura:attribute name="myOppId" type="String" description="アクション元の商談Id"/>
+	<aura:attribute name="oppId" type="String" description="選択された商談のID"/>
+	<aura:attribute name="quotesNum" type="Integer" />
+
+
+	<div aura:Id="mySpinner" class="slds-hide" style="height: 6rem;">
+		<div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+			<span class="slds-assistive-text">Loading</span>
+			<div class="slds-spinner__dot-a"></div>
+			<div class="slds-spinner__dot-b"></div>
+		</div>
+	</div>
+
+	<div class="fillBox">
+		<div class="slds-align_absolute-center">
+			<div class="slds-text-body_regular slds-text-color_weak">{!v.quotesNum}件の見積がコピーされます。</div>
+		</div>
+		<div class="slds-align_absolute-center">
+			<div class="slds-m-top_medium">
+				<lightning:button variant="brand" label="コピー" title="Copy" onclick="{! c.handleClick }" />
+			</div>
+		</div>
+	</div>
+
+</aura:component>

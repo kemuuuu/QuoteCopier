@@ -1,0 +1,44 @@
+<aura:component controller="CopyQuoteCrossOverOppsController">
+
+	<aura:attribute name="quotations" type="Quote[]" />
+	<aura:attribute name="columns" type="List"/>
+	<aura:attribute name="selectedQuotes" type="Quote[]" />
+	<aura:attribute name="myOppId" type="String" />
+
+
+	<div aura:Id="mySpinner" class="slds-hide" style="height: 6rem;">
+		<div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+			<span class="slds-assistive-text">Loading</span>
+			<div class="slds-spinner__dot-a"></div>
+			<div class="slds-spinner__dot-b"></div>
+		</div>
+	</div>
+
+	<div class="slds-box" style="height: 380px">
+		<article class="slds-card">
+		  <div class="slds-card__header slds-grid">
+		    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+					<div class="slds-col slds-size_4-of-5">
+			      <div class="slds-media__figure">
+			        <span class="slds-icon_container slds-icon-standard-quotes" title="quotes">
+			          <div class="slds-icon slds-icon_small" aria-hidden="true">
+			            <lightning:icon iconName="standard:quotes" size="small" />
+			          </div>
+			        </span>
+							<span class="slds-text-title slds-text-color_weak slds-m-left_small">コピーする見積の選択</span>
+			      </div>
+					</div>
+				</header>
+			</div>
+			<div class="slds-scrollable" style="height: 15rem;">
+				<lightning:datatable data="{!v.quotations}"
+														columns="{!v.columns}"
+														keyField="Id"
+														onrowselection="{!c.handleOnRowSelection}"/>
+			</div>
+			<div class="copybutton">
+				<lightning:Button variant="brand" title="Copy" label="コピー" onclick="{!c.handleButtonClick}"/>
+			</div>
+		</article>
+	</div>
+</aura:component>

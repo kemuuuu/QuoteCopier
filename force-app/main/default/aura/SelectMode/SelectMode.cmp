@@ -1,0 +1,19 @@
+<aura:component >
+	<aura:attribute name="options" type="List" default='[
+			{"label": "選択した案件に紐づく全ての見積をコピー", "value": "all"},
+			{"label": "選択した案件からコピーする見積を選択する", "value": "part"}
+		]'
+	/>
+	<aura:attribute name="radioGrpValue" type="String" />
+
+	<aura:registerEvent name="mySelectModeEvent" type="c:SelectedModeEvent" />
+
+	<lightning:radioGroup
+		aura:id="radioGrp"
+		name="SELECT OPTION"
+		label="コピーオプション選択"
+		options="{!v.options}"
+		value="{!v.radioGrpValue}"
+		onchange="{! c.handloChange }"
+	/>
+</aura:component>

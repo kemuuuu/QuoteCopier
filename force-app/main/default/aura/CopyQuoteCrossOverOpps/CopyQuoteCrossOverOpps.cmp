@@ -1,0 +1,40 @@
+<aura:component controller="CopyQuoteCrossOverOppsController" implements="force:lightningQuickAction,force:hasRecordId" >
+
+	<aura:attribute name="oppId" type="String"/>
+	<aura:attribute name="quotes" type="Quote[]"/>
+	<aura:attribute name="columns" type="List"/>
+
+	<aura:handler name="myChangeOppEvent" event="c:ChangeOppEvent" action="{!c.handleChangeOppEvent}" />
+	<aura:handler name="mySelectModeEvent" event="c:SelectedModeEvent" action="{!c.handleModeSelectEvent}"/>
+
+	<aura:handler name="change" value="{!v.oppId}" action="{!c.oppChange}" />
+
+
+	<div class="slds-grid slds-grid_vertical">
+		<div clsss="slds-col">
+			<div class="slds-m-bottom_medium">
+				<c:SearchOpps myOppId="{!v.recordId}"/>
+			</div>
+		</div>
+		<div class="slds-col">
+			<div class="RadioGroup">
+				<c:SelectMode />
+			</div>
+		</div>
+		<div class="slds-col">
+			<div aura:id="allCopyDiv" class="slds-hide">
+				<div class="slds-box slds-m-top_xx-large fill">
+					<c:CopyAllQuote oppId="{!v.oppId}" myOppId="{!v.recordId}" quotesNum="{!v.quotes.length}"/>
+				</div>
+			</div>
+		</div>
+		<div class="slds-col">
+			<div aura:id="partCopyDiv" class="slds-hide">
+				<div class="slds-m-top_small">
+					<c:CopyPartOfQuote quotations="{!v.quotes}" columns="{!v.columns}" myOppId="{!v.recordId}"/>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</aura:component>

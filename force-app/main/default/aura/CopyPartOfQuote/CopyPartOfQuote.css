@@ -1,0 +1,12 @@
+.THIS .topBorder {
+  text-align: center;
+  width: 95%;
+  background-color: hsla(50, 33%, 25%, .75);
+}
+
+.THIS .copybutton {
+  margin-top: 10px;
+  position: relative;
+  left: 42%;
+  float: left;
+}
