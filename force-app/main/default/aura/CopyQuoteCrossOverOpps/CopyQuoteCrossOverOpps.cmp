@@ -4,6 +4,7 @@
 	<aura:attribute name="quotes" type="Quote[]"/>
 	<aura:attribute name="columns" type="List"/>
 
+	<aura:handler name="init" value="{!this}" action="{!c.init}"/>
 	<aura:handler name="myChangeOppEvent" event="c:ChangeOppEvent" action="{!c.handleChangeOppEvent}" />
 	<aura:handler name="mySelectModeEvent" event="c:SelectedModeEvent" action="{!c.handleModeSelectEvent}"/>
 

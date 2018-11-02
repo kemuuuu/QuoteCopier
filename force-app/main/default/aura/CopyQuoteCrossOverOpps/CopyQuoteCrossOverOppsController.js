@@ -1,4 +1,25 @@
 ({
+	init: function(c, e, h) {
+		var definedColumns = [];
+		var c1 = $A.get("$Label.c.QuoteColumn1");
+		if (c1 != "undefined"){
+			definedColumns.push(c1);
+		}
+		var c2 = $A.get("$Label.c.QuoteColumn2");
+		if (c2 != "undefined"){
+			definedColumns.push(c2);
+		}
+		var c3 = $A.get("$Label.c.QuoteColumn3");
+		if (c3 != "undefined"){
+			definedColumns.push(c3);
+		}
+		// var c4 = $A.get("$Label.c.QuoteColumn4");
+		// if (c4 != "undefined"){
+		// 	definedColumns.push(c4);
+		// }
+		h.initHelper(c, definedColumns);
+	},
+
 	handleModeSelectEvent : function(component, event, helper) {
 		var mode = event.getParam("modeName");
 

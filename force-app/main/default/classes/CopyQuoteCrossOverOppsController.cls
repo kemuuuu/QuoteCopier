@@ -1,5 +1,26 @@
 public with sharing class CopyQuoteCrossOverOppsController {
-    /**
+	/**
+	*	初期化
+	*/
+	@AuraEnabled
+	public static List<string> doInit(List<String> columns){
+		List<String> fields = new List<String>();
+		Map<String, Schema.SObjectField> fldM = Schema.SObjectType.Quote.fields.getMap();
+		for (String c : columns) {
+			SFField f = new SFField();
+			String l = fldM.get(c).getDescribe().getLabel();
+			String t = String.valueOf(fldM.get(c).getDescribe().getType());
+			f.label = l;
+			f.type = t=='STRING'? 'text' : t.toLowerCase();
+			f.fieldName = c;
+			JSONGenerator g = JSON.createGenerator(false);
+			g.writeObject(f);
+			fields.add(g.getAsString());
+		}
+		return fields;
+	}
+
+  /**
 	* Componentから検索が実行されたときの処理
 	* @param keyword Componentから受け取った検索ワード
     *        myOppId Component呼び出し元商談のID
@@ -17,10 +38,10 @@ public with sharing class CopyQuoteCrossOverOppsController {
 	*/
 	@AuraEnabled
 	public static List<Quote> fetchQuotes(Id oppId) {
-		return [SELECT Id, Subtotal, Name 
-                FROM Quote 
-                WHERE opportunityId = :oppId 
-                ORDER BY CreatedDate desc];
+		String allFields = ClonalQuoteCreater.getAllFieldNames('Quote');
+		String q = 'SELECT ' + allFields + ' FROM Quote '
+						 + 'WHERE opportunityId = :oppId ORDER BY CreatedDate desc';
+		return Database.query(q);
 	}
 
 	/**
@@ -74,9 +95,15 @@ public with sharing class CopyQuoteCrossOverOppsController {
 		clonalQuote.opportunityId = myOppId;
 		insert clonalQuote;
 
-        List<QuoteLineItem> clonalItemList = ClonalQuoteCreater.createClonalQuoteItem(q.Id, clonalQuote.Id);
+    List<QuoteLineItem> clonalItemList = ClonalQuoteCreater.createClonalQuoteItem(q.Id, clonalQuote.Id);
 		insert clonalItemList;
 
 		return clonalQuote.Id;
+	}
+
+	class SFField {
+		String label;
+		String fieldName;
+		String type;
 	}
 }
