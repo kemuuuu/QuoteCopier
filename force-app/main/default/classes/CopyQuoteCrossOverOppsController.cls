@@ -27,7 +27,7 @@ public with sharing class CopyQuoteCrossOverOppsController {
 	*/
 	@AuraEnabled
 	public static List<Opportunity> fetchOpps(String keyword, Id myOppId) {
-		String query = 'SELECT Id, Name, Amount, Account.Name FROM Opportunity'
+		String query = 'SELECT Id, Name, Amount, Account.Name, CreatedDate FROM Opportunity'
                      + ' WHERE ID != :myOppId AND Name LIKE \'%'+keyword+'%\' ORDER BY Name asc LIMIT 5';
 		return Database.query(query);
 	}

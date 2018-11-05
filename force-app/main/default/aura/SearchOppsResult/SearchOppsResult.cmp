@@ -13,7 +13,7 @@
 				<span class="slds-listbox__option-text slds-listbox__option-text_entity"><ui:outputText value="{!v.opp.Name}" /></span>
 				<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"><ui:outputText value="{!'取引先:' + v.opp.Account.Name}" /></span>
 				<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"><ui:outputText value="金額:￥" /><ui:outputNumber value="{!v.opp.Amount}" /></span>
-				<span class="slds-listbox__option-meta slds-listbox__option-meta_entity"><ui:outputText value="{!'作成日:' + v.opp.CreatedDate__c}" /></span>
+				<!-- <span class="slds-listbox__option-meta slds-listbox__option-meta_entity"><ui:outputText value="{!'作成日:' + v.opp.CreatedDate}" /></span> -->
 			</span>
 		</div>
 	</li>

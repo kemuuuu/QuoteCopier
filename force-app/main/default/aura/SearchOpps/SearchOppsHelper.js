@@ -10,6 +10,9 @@
 			$A.util.removeClass(cmp.find("mySpinner"),"slds-show");
 			var state = res.getState();
 			if (state === "SUCCESS") {
+				// res.getReturnValue().forEach(function(v){
+				// 	v.CreatedDate = v.CreatedDate.left(10);
+				// });
 				cmp.set('v.listOfSearchRecords',res.getReturnValue());
 				$A.util.addClass(cmp.find("mySpinner"), "slds-hide");
 		    $A.util.removeClass(cmp.find("mySpinner"), "slds-show");

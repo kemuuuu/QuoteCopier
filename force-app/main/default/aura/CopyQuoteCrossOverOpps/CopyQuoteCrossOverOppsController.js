@@ -13,10 +13,10 @@
 		if (c3 != "undefined"){
 			definedColumns.push(c3);
 		}
-		// var c4 = $A.get("$Label.c.QuoteColumn4");
-		// if (c4 != "undefined"){
-		// 	definedColumns.push(c4);
-		// }
+		var c4 = $A.get("$Label.c.QuoteColumn4");
+		if (c4 != "undefined"){
+			definedColumns.push(c4);
+		}
 		h.initHelper(c, definedColumns);
 	},
 
